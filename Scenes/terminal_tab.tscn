@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dqudm4tmr34q1"]
+
+[ext_resource type="Theme" uid="uid://c122mh0ibiv2e" path="res://Assets/terminal_theme.tres" id="1_theme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
+
+[node name="TerminalTab" type="PanelContainer" unique_id=338430251]
+custom_minimum_size = Vector2(260, 180)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_theme")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2061428589]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=419004678]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Output" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=554162778]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "[color=#87bc98]Write \"help\" for commands[/color]
+"
+scroll_following = true
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="InputRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=947219399]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Prompt" type="Label" parent="MarginContainer/VBoxContainer/InputRow" unique_id=1580344125]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.53, 0.74, 0.6, 1)
+text = "user@ferrum:~$"
+
+[node name="CommandInput" type="LineEdit" parent="MarginContainer/VBoxContainer/InputRow" unique_id=1207869441]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+caret_blink = true
+caret_blink_interval = 0.5

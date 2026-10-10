@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://csy76rmctg6e3"]
+
+[ext_resource type="Theme" uid="uid://c122mh0ibiv2e" path="res://Assets/terminal_theme.tres" id="1_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://ci5vjrks1k7r1" path="res://Assets/Image/BackgroundTerminal.png" id="2_3dryh"]
+[ext_resource type="Script" uid="uid://corq7d1wylia2" path="res://Scripts/NewTerminal.gd" id="2_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dqudm4tmr34q1" path="res://Scenes/terminal_tab.tscn" id="3_wowpa"]
+[ext_resource type="Texture2D" uid="uid://b0o68tp6stkwh" path="res://Assets/UI/plus.svg" id="5_plus"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_background"]
+texture = ExtResource("2_3dryh")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rename_input"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.045, 0.06, 0.05, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.24, 0.34, 0.28, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Game" type="Control" unique_id=2126564059]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wrm1d")
+script = ExtResource("2_wowpa")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=82241177]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_background")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1210522527]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=319279222]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=978530867]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=857822816]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Terminal"
+
+[node name="Location" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=573678166]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.49, 0.56, 0.54, 1)
+theme_override_font_sizes/font_size = 14
+text = "user: ferrum"
+
+[node name="TerminalArea" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=824334618]
+custom_minimum_size = Vector2(340, 230)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TabStrip" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea" unique_id=1853993580]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea/TabStrip" unique_id=87384383]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="TabRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea/TabStrip/MarginContainer" unique_id=826109887]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TabBar" type="TabBar" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea/TabStrip/MarginContainer/TabRow" unique_id=399736128]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+max_tab_width = 220
+tab_count = 1
+tab_0/title = "Terminal 1"
+
+[node name="AddTabButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea/TabStrip/MarginContainer/TabRow" unique_id=2049378084]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+tooltip_text = "New terminal tab"
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_plus")
+icon_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea" unique_id=1510577375]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="Terminal 1" parent="PanelContainer/MarginContainer/VBoxContainer/TerminalArea/TabContainer" unique_id=1286036117 instance=ExtResource("3_wowpa")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="RenameDialog" type="ConfirmationDialog" parent="." unique_id=684775349]
+unique_name_in_owner = true
+title = "Rename terminal"
+initial_position = 2
+size = Vector2i(380, 160)
+unresizable = true
+theme = ExtResource("1_wrm1d")
+ok_button_text = "Rename"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RenameDialog" unique_id=1804053800]
+custom_minimum_size = Vector2(320, 80)
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 368.0
+offset_bottom = 100.0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="RenameDialog/VBoxContainer" unique_id=1554971783]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.73, 0.68, 1)
+theme_override_font_sizes/font_size = 14
+text = "Tab name"
+
+[node name="RenameInput" type="LineEdit" parent="RenameDialog/VBoxContainer" unique_id=274862894]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rename_input")
+placeholder_text = "Leave blank for an automatic name"
+max_length = 32
+caret_blink = true
